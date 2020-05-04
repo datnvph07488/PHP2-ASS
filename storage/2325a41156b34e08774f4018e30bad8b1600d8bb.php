@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Thêm sản phẩm</title>
+    <title>Cập nhật sản phẩm</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
@@ -19,49 +19,56 @@
         </nav>
         
         
-        <h3>Tạo mới sản phẩm</h3>
-        <form action="./save-add-product" method="POST" enctype="multipart/form-data">
+        <h3>Edit sản phẩm</h3>
+        <form action="./save-edit-product?id=<?php echo e($model->id); ?>" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
                         <label for="">Tên sản phẩm</label>
-                        <input type="text" name="name" class="form-control">
+                        <input type="text" name="name" class="form-control" value="<?php echo e($model->name); ?>">
                     </div>
                     <div class="form-group">
                         <label for="">Danh mục</label>
                         <select name="cate_id" class="form-control">
                             <?php $__currentLoopData = $cates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ca): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($ca->id); ?>"><?php echo e($ca->cate_name); ?></option>
+                            <option 
+                                <?php if($ca->id == $model->cate_id): ?> selected <?php endif; ?>
+                                value="<?php echo e($ca->id); ?>"><?php echo e($ca->cate_name); ?></option>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="">Giá sản phẩm</label>
-                        <input type="number" name="price" class="form-control">
+                        <input type="number" name="price" class="form-control" value="<?php echo e($model->price); ?>">
                     </div>
                     <div class="form-group">
                         <label for="">Mô tả ngắn</label>
-                        <textarea name="short_desc" class="form-control" rows="4"></textarea>
+                        <textarea name="short_desc" class="form-control" rows="4"><?php echo e($model->short_desc); ?></textarea>
                     </div>
                 </div>
                 <div class="col-6">
+                    <div class="row">
+                        <div class="col-4 offset-4">
+                            <img src="<?php echo e($model->image); ?>" class="img-fluid">
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="">Ảnh sản phẩm</label>
                         <input type="file" name="image" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="">Đánh giá</label>
-                        <input type="number" step="0.1" name="star" class="form-control">
+                        <input type="number" step="0.1" name="star" class="form-control" value="<?php echo e($model->star); ?>">
                     </div>
                     <div class="form-group">
                         <label for="">Lượt xem</label>
-                        <input type="number" name="views" class="form-control">
+                        <input type="number" name="views" class="form-control" value="<?php echo e($model->views); ?>">
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-group">
                         <label for="">Chi tiết</label>
-                        <textarea name="detail" class="form-control" rows="6"></textarea>
+                        <textarea name="detail" class="form-control" rows="6"><?php echo e($model->detail); ?></textarea>
                     </div>
                 </div>
                 <div class=" col-12 text-center">
@@ -74,4 +81,4 @@
     
     
 </body>
-</html><?php /**PATH E:\XAPP\htdocs\ASS\PHP2-ASS\app\views/product/add-form.blade.php ENDPATH**/ ?>
+</html><?php /**PATH E:\XAPP\htdocs\ASS\PHP2-ASS\app\views/product/edit-form.blade.php ENDPATH**/ ?>
